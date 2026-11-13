@@ -1,0 +1,13 @@
+{
+  "name": "mianjing-ben",
+  "version": "1.0.0",
+  "private": true,
+  "description": "面经本 —— 本地面试题库与知识点整理工具，数据保存为本地 JSON 文件",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>面经本 · 面试题库与知识点</title>
+  <meta name="description" content="按面试归档题目，答案可留空；记录知识点，支持搜索、随机抽题复习与本地备份。">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='15' fill='%236f9bff'/%3E%3Cpath d='M18 23h28M18 32h20M18 41h24' stroke='white' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
+  <script>
+    (function () {
+      try {
+        var theme = localStorage.getItem('mianjing.theme');
+        document.documentElement.dataset.theme = theme === 'light' ? 'light' : 'dark';
+      } catch (e) {
+        document.documentElement.dataset.theme = 'dark';
+      }
+    })();
+  </script>
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar" id="sidebar" aria-label="面试列表">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">面</div>
+        <div class="brand-text">
+          <div class="brand-name">面经本</div>
+          <div class="brand-sub">Interview Notes</div>
+        </div>
+      </div>
+
+      <button class="btn btn-primary btn-block" data-action="new-interview" type="button">
+        <span data-icon="plus"></span>新建面试
+      </button>
+
+      <nav class="side-nav" id="sideNav"></nav>
+
+      <div class="sidebar-foot">
+        <div class="side-stats" id="sideStats"></div>
+        <div class="save-status is-loading" id="saveStatus" title="数据保存状态">
+          <i aria-hidden="true"></i><span>正在读取…</span>
+        </div>
+        <div class="side-tools">
+          <button class="tool-btn" data-action="export-json" type="button" title="导出 JSON 备份">
+            <span data-icon="download"></span><span>备份</span>
+          </button>
+          <button class="tool-btn" data-action="import-json" type="button" title="从 JSON 备份恢复">
+            <span data-icon="upload"></span><span>导入</span>
+          </button>
+          <button class="tool-btn" data-action="export-md" type="button" title="导出 Markdown">
+            <span data-icon="file"></span><span>Markdown</span>
+          </button>
+        </div>
+        <p class="side-note" id="storageNote">正在连接本地数据…</p>
+      </div>
+    </aside>
+
+    <div class="main-wrap">
+      <header class="topbar">
+        <button class="icon-btn menu-btn" data-action="toggle-sidebar" type="button" aria-label="打开面试列表">
+          <span data-icon="menu"></span>
+        </button>
+
+        <label class="search-box" for="searchInput">
+          <span data-icon="search"></span>
+          <input id="searchInput" type="search" placeholder="搜索题目、知识点、面试名称…" autocomplete="off" spellcheck="false">
+          <kbd>Ctrl K</kbd>
+        </label>
+
+        <div class="top-actions">
+          <button class="btn btn-ghost" data-action="review" type="button" title="从当前范围随机抽一道题">
+            <span data-icon="dice"></span><span>抽题复习</span>
+          </button>
+          <button class="icon-btn" id="themeBtn" data-action="theme" type="button" aria-label="切换主题" title="切换深色 / 浅色">
+            <span data-icon="moon"></span>
+          </button>
+        </div>
+      </header>
+
+      <main class="main" id="main"></main>
+    </div>
+  </div>
+
+  <div class="scrim" id="scrim"></div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <dialog class="modal" id="modal" aria-label="对话框"></dialog>
+  <input type="file" id="importFile" accept="application/json,.json" hidden>
+
+  <noscript>
+    <div style="padding:40px;text-align:center">这个页面需要启用 JavaScript 才能使用。</div>
+  </noscript>
+
+  <script src="assets/js/store.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
